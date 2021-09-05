@@ -3,10 +3,12 @@ package com.blz;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.util.Scanner;
+
 import org.junit.Test;
 
 public class RegexTest {
-
+	static final Scanner SC = new Scanner(System.in);
 	RegistrationForm form = new RegistrationForm();
 
 	@Test
@@ -182,5 +184,39 @@ public class RegexTest {
 	@Test
 	public void testEmailValid_Fail() {
 		assertFalse(form.userEmail("abc"));
+	}
+
+	@Test
+	public void testUserInputInValid_Sad() {
+		System.out.println("Enter your Invalid FirstName: ");
+		String firstName = SC.next();
+		System.out.println("Enter your Invalid LastName: ");
+		String lastName = SC.next();
+		System.out.println("Enter your Invalid Email: ");
+		String email = SC.next();
+		System.out.println("Enter your Invalid Mobile Number: ");
+		String phoneNumber = SC.next();
+		System.out.println("Enter your Invalid password: ");
+		String pass = SC.next();
+		boolean sad = form.firstName(firstName) && form.lastName(lastName) && form.userEmail(email)
+				&& form.userNumber(phoneNumber) && form.userPass(pass);
+		assertFalse(sad);
+	}
+
+	@Test
+	public void testUserInputValid_Happy() {
+		System.out.println("Enter your valid FirstName: ");
+		String firstName = SC.next();
+		System.out.println("Enter your valid LastName: ");
+		String lastName = SC.next();
+		System.out.println("Enter your valid Email: ");
+		String email = SC.next();
+		System.out.println("Enter your valid Mobile Number: ");
+		String phoneNumber = SC.next();
+		System.out.println("Enter your valid password: ");
+		String pass = SC.next();
+		boolean happy = form.firstName(firstName) && form.lastName(lastName) && form.userEmail(email)
+				&& form.userNumber(phoneNumber) && form.userPass(pass);
+		assertFalse(happy);
 	}
 }
